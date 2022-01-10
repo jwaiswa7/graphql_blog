@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :street
       t.integer :number
       t.string :city
-      t.string :postcode
+      t.string :post_code
       t.string :country
 
       t.timestamps

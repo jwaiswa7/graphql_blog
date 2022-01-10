@@ -13,5 +13,29 @@ module Types
     def test_field
       "Hello World!"
     end
+
+    field :user, Types::UserType, null: false, description: "Returns a user" do 
+      argument :id, ID, required: true 
+    end
+
+    def user(id:)
+      User.find(id)
+    end
+
+    field :post, Types::PostType, null: false, description: "Returns a post" do 
+      argument :id, ID, required: true 
+    end
+
+    def post(id:)
+      Post.find(id)
+    end
+
+    field :comment, Types::CommentType, null: false, description: "Returns a comment" do 
+      argument :id, ID, required: true 
+    end
+
+    def comment(id:)
+      Comment.find(id)
+    end
   end
 end
