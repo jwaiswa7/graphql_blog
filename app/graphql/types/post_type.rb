@@ -8,7 +8,7 @@ class Types::PostInputType < GraphQL::Schema::InputObject
     graphql_name "PostInputType"
 
     description "Fields required to create a post"
-
+    argument :id, ID, required: false
     argument :user_id, ID, required: true
     argument :body, String, required: false
 end
