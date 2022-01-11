@@ -3,3 +3,12 @@ class Types::PostType < Types::BaseObject
     field :body, String, null: false
     field :comments, [Types::CommentType], null: false
 end
+
+class Types::PostInputType < GraphQL::Schema::InputObject
+    graphql_name "PostInputType"
+
+    description "Fields required to create a post"
+
+    argument :user_id, ID, required: true
+    argument :body, String, required: false
+end
