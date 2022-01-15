@@ -1,17 +1,22 @@
 class Types::UserType < Types::BaseObject
-    field :id, ID, null: false
-    field :first_name, String, null: false
-    field :last_name, String, null: false
-    field :street,String, null: false
-    field :number, Int, null: false
-    field :city, String, null: false
-    field :post_code, String, null: false
-    field :country, String, null: false
-    field :address, String, null: false
+    field :id, ID, null: true
+    field :first_name, String, null: true
+    field :last_name, String, null: true
+    field :street,String, null: true
+    field :number, Int, null: true
+    field :city, String, null: true
+    field :post_code, String, null: true
+    field :country, String, null: true
+    field :address, String, null: true
     field :posts, [Types::PostType], null: false
+    field :errors, [Types::ErrorType], null: true
 
     def address
         "#{object.street} #{object.number} #{object.city} #{object.post_code} #{object.country}"
+    end
+
+    def errors
+        object.errors.map { |e| {field_name: e.attribute, errors: object.errors[e.attribute]}}
     end
 
 end
