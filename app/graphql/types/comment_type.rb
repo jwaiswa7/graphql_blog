@@ -1,6 +1,11 @@
 class Types::CommentType < Types::BaseObject
-    field :id, ID, null: false
-    field :body, String, null: false
+    field :id, ID, null: true
+    field :body, String, null: true
+    field :errors, [Types::ErrorType], null: true
+
+    def errors
+        object.errors.map { |e| {field_name: e.attribute, errors: object.errors[e.attribute]}}
+    end
 end
 
 class Types::CommentInputType < GraphQL::Schema::InputObject

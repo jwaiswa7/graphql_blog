@@ -11,12 +11,12 @@ class Types::UserType < Types::BaseObject
     field :posts, [Types::PostType], null: false
     field :errors, [Types::ErrorType], null: true
 
-    def address
-        "#{object.street} #{object.number} #{object.city} #{object.post_code} #{object.country}"
-    end
-
     def errors
         object.errors.map { |e| {field_name: e.attribute, errors: object.errors[e.attribute]}}
+    end
+
+    def address
+        "#{object.street} #{object.number} #{object.city} #{object.post_code} #{object.country}"
     end
 
 end

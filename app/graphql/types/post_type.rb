@@ -1,7 +1,12 @@
 class Types::PostType < Types::BaseObject
-    field :id, ID, null: false
-    field :body, String, null: false
-    field :comments, [Types::CommentType], null: false
+    field :id, ID, null: true
+    field :body, String, null: true
+    field :comments, [Types::CommentType], null: true
+    field :errors, [Types::ErrorType], null: true
+
+    def errors
+        object.errors.map { |e| {field_name: e.attribute, errors: object.errors[e.attribute]}}
+    end
 end
 
 class Types::PostInputType < GraphQL::Schema::InputObject
