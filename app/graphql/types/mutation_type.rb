@@ -16,7 +16,7 @@ module Types
       expected&.update user.to_h
     end
 
-    field :update_post, Boolean, description "Updates a post" do 
+    field :update_post, Boolean, description: "Updates a post" do 
       argument :post, Types::PostInputType, required: true
     end
 
@@ -33,5 +33,31 @@ module Types
       expected = Comment.where(id: comment[:id]).first
       expected&.update comment.to_h
     end
+
+    field :delete_user, Boolean, description: "Deletes a user" do 
+      argument :id, ID, required: true
+    end
+
+    def delete_user(id:)
+      User.find(id).destroy
+    end
+
+    field :delete_post, Boolean, description: "deletes a post" do 
+      argument :id, ID, required: true
+    end
+
+    def delete_post(id:)
+      Post.find(id).destroy
+    end
+
+    field :delete_comment, Boolean, description: "deletes a comment" do 
+      argument :id, ID, required: true
+    end
+
+    def delete_comment(id:)
+      Comment.find(id).destroy
+    end
+
+
   end
 end
