@@ -67,6 +67,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     ast (2.4.2)
+    bcrypt (3.1.16)
     bootsnap (1.9.3)
       msgpack (~> 1.0)
     builder (3.2.4)
@@ -226,6 +227,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   database_cleaner (~> 1.7)
   debug

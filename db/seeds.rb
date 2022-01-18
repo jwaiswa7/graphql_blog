@@ -17,7 +17,8 @@ def create_users
             number: rand(20), 
             city: Faker::Address.city, 
             post_code: Faker::Address.postcode, 
-            country: Faker::Address.country
+            country: Faker::Address.country, 
+            email: Faker::Internet.email
         )
     end
 end

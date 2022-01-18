@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_004734) do
+ActiveRecord::Schema.define(version: 2022_01_17_154356) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 2022_01_10_004734) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "key"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_sessions_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -41,8 +49,12 @@ ActiveRecord::Schema.define(version: 2022_01_10_004734) do
     t.string "country"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "is_superadmin"
   end
 
   add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
+  add_foreign_key "sessions", "users"
 end
